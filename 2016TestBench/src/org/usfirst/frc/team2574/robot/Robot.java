@@ -3,7 +3,9 @@ package org.usfirst.frc.team2574.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,22 +22,29 @@ public class Robot extends IterativeRobot {
     final String customAuto = "My Auto";
     String autoSelected;
     SendableChooser chooser;
+    
+    Servo servomeme;
+	Joystick joystickmeme;
+	Talon talon1;
+    
+    
 
-    Spark testSpark;
-    Joystick testJoystick;
     
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+   
     public void robotInit() {
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", defaultAuto);
         chooser.addObject("My Auto", customAuto);
         SmartDashboard.putData("Auto choices", chooser);
         
-        testSpark = new Spark(0);
-        testJoystick = new Joystick(0);
+       servomeme = new Servo(0);
+       joystickmeme = new Joystick(0);
+       talon1 = new Talon(0);
+       
         
     }
     
@@ -51,7 +60,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
     	autoSelected = (String) chooser.getSelected();
 //		autoSelected = SmartDashboard.getString("Auto Selector", defaultAuto);
-		System.out.println("Auto selected: " + autoSelected);
+		System.out.println("Auto selected: " + autoSelected); 
     }
 
     /**
@@ -70,13 +79,39 @@ public class Robot extends IterativeRobot {
     }
 
     /**
-     * This function is called periodically during operator control
+    
+ * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
-    testSpark.set(testJoystick.getRawAxis(0));
     	
-    }
+     //testSpark.set(testJoystick.getRawAxis(1));
+     
+    
+    
+    // testSpark.set(testJoystick.getRawAxis(2));
+    
+    
+     if (joystickmeme.getRawButton(11)){
+    	 servomeme.set(.7);
+    	 
+ 
+     } else {
+    	 servomeme.set(0);
+     }
+     if(joystickmeme.getRawButton(5)){
+    	 
+     }
+     
+     	
+// this is where all the gucci stuff goes my bro dude lol
+    	// (meaning like all the gucci stuff)
+        }	
+        
+    	
+    	
+    	
+    	
+
     
     /**
      * This function is called periodically during test mode
