@@ -41,9 +41,9 @@ public class Robot extends IterativeRobot {
         chooser.addObject("My Auto", customAuto);
         SmartDashboard.putData("Auto choices", chooser);
         
-       servomeme = new Servo(0);
+       servomeme = new Servo(6);
        joystickmeme = new Joystick(0);
-       talon1 = new Talon(0);
+       talon1 = new Talon(7);
        
         
     }
@@ -98,8 +98,12 @@ public class Robot extends IterativeRobot {
      } else {
     	 servomeme.set(0);
      }
-     if(joystickmeme.getRawButton(5)){
-    	 
+       if(joystickmeme.getRawButton(5)){
+    	 talon1.set(1);
+     } if(joystickmeme.getRawButton(3)){
+    	 talon1.set(-1);
+     } else {
+    	 talon1.set(0);
      }
      
      	
